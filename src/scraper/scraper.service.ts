@@ -1,4 +1,10 @@
 import { Injectable } from '@nestjs/common';
 
 @Injectable()
-export class ScraperService {};
+export class ScraperService {
+
+  async fetchData() {
+    return { message: "This fetches data" };
+  }
+
+};
