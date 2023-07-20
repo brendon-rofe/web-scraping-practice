@@ -8,7 +8,7 @@ export class ScraperController {
 
   @Get()
   async fetchData(@Query('url') url: string) {
-    return await this.scraperService.scrapeTitle(url);
+    return await this.scraperService.scrapeBookImages(url);
   };
 
 };

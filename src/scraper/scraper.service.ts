@@ -11,7 +11,7 @@ export class ScraperService {
   private baseUrl: string;
   private readonly imageDir = './images';
 
-  public async scrapeTitle(url: string): Promise<{}> {
+  public async scrapeBookImages(url: string): Promise<{}> {
     try {
       this.baseUrl = url;
       const response = await axios.get(url);
@@ -49,6 +49,6 @@ export class ScraperService {
       response.pipe(file);
       file.on('finish', () => file.close());
     });
-  }
+  };
 
 };
