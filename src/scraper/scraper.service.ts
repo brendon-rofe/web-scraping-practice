@@ -8,10 +8,12 @@ const https = require('https');
 @Injectable()
 export class ScraperService {
   private readonly imageDir = './images';
+  private readonly numPages = 50;
 
   public async scrapeBookImages(): Promise<{}> {
     await this.checkImageDir();
-    let baseUrl = 'http://books.toscrape.com/catalogue/category/books_1/page-1.html'
+   for(let i = 1; i < this.numPages; i++) {
+    let baseUrl = `http://books.toscrape.com/catalogue/category/books_1/page-${i}.html`
 
     try {
       const response = await axios.get(baseUrl);
@@ -22,12 +24,13 @@ export class ScraperService {
         const relativeImgSrc = $(el).attr('src');
         const absoluteImgSrc = new URL(relativeImgSrc, baseUrl).href;
         this.downloadImage(absoluteImgSrc);
-      })
-      return { message: 'Images downloaded' };
+      });
     } catch (error) {
       console.error(error);
       throw error;
     };
+   };
+   return { message: 'Images downloaded' };
   };
 
   private async checkImageDir() {
