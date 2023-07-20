@@ -16,7 +16,7 @@ export class ScraperService {
     } catch (error) {
       console.error(error);
       throw error;
-    }
-  }
+    };
+  };
 
 };
