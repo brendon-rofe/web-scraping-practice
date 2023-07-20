@@ -7,8 +7,8 @@ export class ScraperController {
   constructor(private scraperService: ScraperService) {};
 
   @Get()
-  async fetchData(@Query('url') url: string) {
-    return await this.scraperService.scrapeBookImages(url);
+  async fetchData() {
+    return await this.scraperService.scrapeBookImages();
   };
 
 };

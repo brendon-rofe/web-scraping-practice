@@ -7,22 +7,20 @@ const https = require('https');
 
 @Injectable()
 export class ScraperService {
-
-  private baseUrl: string;
   private readonly imageDir = './images';
 
-  public async scrapeBookImages(url: string): Promise<{}> {
+  public async scrapeBookImages(): Promise<{}> {
+    await this.checkImageDir();
+    let baseUrl = 'http://books.toscrape.com/catalogue/category/books_1/page-1.html'
+
     try {
-      this.baseUrl = url;
-      const response = await axios.get(url);
+      const response = await axios.get(baseUrl);
       const html = response.data;
       const $ = cheerio.load(html);
 
-      await this.checkImageDir();
-
       $('article.product_pod img').each((_idx, el) => {
         const relativeImgSrc = $(el).attr('src');
-        const absoluteImgSrc = new URL(relativeImgSrc, this.baseUrl).href;
+        const absoluteImgSrc = new URL(relativeImgSrc, baseUrl).href;
         this.downloadImage(absoluteImgSrc);
       })
       return { message: 'Images downloaded' };
