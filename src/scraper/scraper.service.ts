@@ -1,11 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 const cheerio = require('cheerio');
+const fs = require('fs');
 
 @Injectable()
 export class ScraperService {
 
   private baseUrl: string;
+  private readonly imageDir = './images';
 
   public async scrapeTitle(url: string): Promise<string[]> {
     try {
@@ -14,6 +16,8 @@ export class ScraperService {
       const html = response.data;
       const $ = cheerio.load(html);
       let imageUrls = [];
+
+      await this.checkImageDir();
 
       $('article.product_pod img').each((_idx, el) => {
         const relativeImgSrc = $(el).attr('src');
@@ -26,5 +30,13 @@ export class ScraperService {
       throw error;
     };
   };
+
+  private async checkImageDir() {
+    try {
+      await fs.promises.access(this.imageDir);
+    } catch (error) {
+      await fs.promises.mkdir(this.imageDir);
+    }
+  }
 
 };
