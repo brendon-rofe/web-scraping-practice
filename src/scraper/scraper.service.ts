@@ -8,7 +8,6 @@ const AWS = require('aws-sdk');
 
 @Injectable()
 export class ScraperService {
-  private readonly imageDir = './images';
   private readonly numPages = 50;
 
   private s3 = new AWS.S3({
@@ -36,15 +35,6 @@ export class ScraperService {
     // Wait for all downloads and uploads to finish
     await Promise.all(downloadPromises);
     return { message: 'Images downloaded' };
-  };
-
-
-  private async checkImageDir() {
-    try {
-      await fs.promises.access(this.imageDir);
-    } catch (error) {
-      await fs.promises.mkdir(this.imageDir);
-    };
   };
 
   private downloadAndUploadImage(url: string): Promise<void> {
