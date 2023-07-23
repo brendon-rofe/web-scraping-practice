@@ -1,10 +1,13 @@
 import { Injectable } from '@nestjs/common';
 import axios from 'axios';
 const cheerio = require('cheerio');
-const fs = require('fs');
 const http = require('http');
 const https = require('https');
 const AWS = require('aws-sdk');
+require('dotenv').config();
+
+console.log(process.env.ACCESS_KEY_ID);
+console.log(process.env.SECRET_ACCESS_KEY);
 
 @Injectable()
 export class ScraperService {
@@ -13,13 +16,13 @@ export class ScraperService {
   private s3 = new AWS.S3({
     accessKeyId: '',
     secretAccessKey: '',
-    region: 'us-west-1'
+    region: 'us-east-1'
   })
 
   public async scrapeBookImages(): Promise<{}> {
     const downloadPromises = [];
 
-    for(let i = 1; i < this.numPages; i++) {
+    for(let i = 1; i <= this.numPages; i++) {
       let baseUrl = `http://books.toscrape.com/catalogue/category/books_1/page-${i}.html`
       const response = await axios.get(baseUrl);
       const html = response.data;
