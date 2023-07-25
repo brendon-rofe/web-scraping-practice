@@ -18,9 +18,9 @@ export class ImageScraperService {
         fs.writeFileSync(`./images/${photoId}.png`, response.data);
       } catch (error) {
         console.log(`Failed to download image for ID ${photoId}: ${error.message}`);
-      }
-    }
+      };
+    };
 
     return { message: 'Images download' };
-  }
+  };
 };
