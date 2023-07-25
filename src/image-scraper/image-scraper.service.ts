@@ -5,7 +5,8 @@ const data = require('/workspace/web-scraping-practice/src/data.json');
 export class ImageScraperService {
 
   async returnData() {
-    return data.elements[0];
-  }
+    console.log(data.elements.length);
+    return data.elements;
+  };
 
 };
