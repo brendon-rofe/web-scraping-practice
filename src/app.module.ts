@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ScraperModule } from './scraper/scraper.module';
+import { ScraperModule } from './bookScraper/bookScraper.module';
 
 @Module({
   imports: [ScraperModule],

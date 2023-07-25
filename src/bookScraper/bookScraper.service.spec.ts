@@ -1,5 +1,5 @@
 import { Test, TestingModule } from '@nestjs/testing';
-import { ScraperService } from './scraper.service';
+import { ScraperService } from './bookScraper.service';
 
 describe('ScraperService', () => {
   let service: ScraperService;
