@@ -8,7 +8,7 @@ export class ImageScraperController {
 
   @Get()
   async getPlayerData() {
-    
+    return await this.imageScraperService.returnData();
   };
 
 };
