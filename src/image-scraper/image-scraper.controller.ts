@@ -8,8 +8,7 @@ export class ImageScraperController {
 
   @Get()
   async getPlayerData() {
-    const pageUrl = 'https://www.premierleague.com/players';
-    return await this.imageScraperService.scrapePlayerNames(pageUrl);
+    
   };
 
 };
