@@ -6,4 +6,4 @@ import { ImageScraperController } from './image-scraper.controller';
   providers: [ImageScraperService],
   controllers: [ImageScraperController]
 })
-export class ImageScraperModule {}
+export class ImageScraperModule {};
