@@ -17,7 +17,7 @@ export class ImageScraperService {
 
   async uploadFileToS3(file: Buffer, key: string): Promise<any> {
     const uploadParams = {
-      Bucket: 'your-bucket-name', 
+      Bucket: 'player-images-1', 
       Key: key,
       Body: file
     };
@@ -46,6 +46,6 @@ export class ImageScraperService {
       }
     }
 
-    return { message: 'Images download' };
+    return { message: 'Images downloaded' };
   }
 };
