@@ -13,7 +13,7 @@ export class ImageScraperService {
       secretAccessKey: '',
       region: 'us-east-1'
     });
-  }
+  };
 
   async uploadFileToS3(file: Buffer, key: string): Promise<any> {
     const uploadParams = {
@@ -31,7 +31,7 @@ export class ImageScraperService {
         }
       });
     });
-  }
+  };
 
   async downloadImages(): Promise<{}> {
     for (let i = 0; i < data.elements.length; i++) {
@@ -43,9 +43,9 @@ export class ImageScraperService {
         await this.uploadFileToS3(response.data, `${photoId}.png`);
       } catch (error) {
         console.log(`Failed to download or upload image for ID ${photoId}: ${error.message}`);
-      }
-    }
+      };
+    };
 
     return { message: 'Images downloaded' };
-  }
+  };
 };
